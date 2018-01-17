@@ -23,9 +23,6 @@ $(function () {
 			    callbackN: function () {
 			    	//取消后的回调
 			    	Mui.loading.show(); //打开loading
-			    	setTimeout(function () { //关闭loading
-			    		Mui.loading.hide()
-			    	},3000)
 			    },
 			    callbackY: function () {
 			    	// 确认后回调
