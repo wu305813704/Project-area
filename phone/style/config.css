@@ -1,0 +1,18 @@
+.basic-list-info .mui-list-cell > div {
+  font-size: .3rem; }
+  .basic-list-info .mui-list-cell > div input, .basic-list-info .mui-list-cell > div select {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    display: box;
+    display: -webkit-box;
+    vertical-align: baseline;
+    text-indent: .05rem;
+    text-align: right;
+    padding-right: .2rem;
+    height: .45rem;
+    line-height: .45rem;
+    margin-top: .35rem;
+    border: none;
+    direction: rtl; }
+  .basic-list-info .mui-list-cell > div select {
+    border: none; }

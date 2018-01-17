@@ -1,0 +1,41 @@
+.basic-list-info .mui-list-cell > div {
+  font-size: .3rem; }
+  .basic-list-info .mui-list-cell > div input, .basic-list-info .mui-list-cell > div select {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    display: box;
+    display: -webkit-box;
+    vertical-align: baseline;
+    text-indent: .05rem;
+    text-align: right;
+    padding-right: .2rem;
+    height: .45rem;
+    line-height: .45rem;
+    margin-top: .35rem;
+    border: none;
+    direction: rtl; }
+  .basic-list-info .mui-list-cell > div select {
+    border: none; }
+
+/**
+ * 
+ * @authors yangjie (914569804@qq.com)
+ * @date    2017-04-19 10:01:43
+ * @version $Id$
+ */
+.mui-wrapper .mui-header {
+  height: .9rem;
+  line-height: .9rem;
+  display: box;
+  display: -webkit-box;
+  background: #000;
+  color: #fff; }
+  .mui-wrapper .mui-header a {
+    width: .4rem;
+    color: #fff;
+    font-size: .32rem; }
+  .mui-wrapper .mui-header h1 {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    text-align: center;
+    margin-left: -.4rem; }

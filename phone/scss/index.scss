@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import "config.scss";
+
+/**
+ * 
+ * @authors hanpanpan (2380272325@qq.com)
+ * @date    2017-04-19 10:01:43
+ * @version $Id$
+ */
+.mui-wrapper{
+	.mui-header{
+		height: .9rem;
+		line-height: .9rem;
+		@include flexbox;
+		background:#000;
+		color:#fff;
+		a{
+			width: .4rem;
+			color:#fff;
+			font-size: .32rem;
+		}
+		h1{
+			@include flexAuto;
+			text-align: center;
+			margin-left: -.4rem;
+		}
+	}
+}

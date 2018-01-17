@@ -1,0 +1,693 @@
+@charset "UTF-8";
+@import "../config.scss";
+
+
+/************************* 基础body设置 start ******************************/
+html, body {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	overflow: hidden;
+}
+body {
+	background-color: $bgColor;
+	color: $fontColor;
+	font-size: 0.26rem;
+}
+a{ 
+	font-size:12px;
+	color: $fontColor; 
+}
+
+input{ background-color: transparent;}
+input::-webkit-search-cancel-button {display: none;}
+/************************* 基础body设置 end ******************************/
+
+
+/************************* 清除浮动 start *************************/
+.clearfix {
+  	zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	overflow: hidden;
+}
+.clearfix:after {
+	clear: both;
+}
+/************************* 清除浮动 end *************************/
+
+/*
+*	基本布局
+*	盒布局
+*/
+/************************* start ******************************/
+.mui-wrapper {
+	@include absWin;
+	@include flexbox;
+	@include flexboxVertical;
+	background-color: $bgDarkColor;
+
+	>.mui-header {
+		z-index: 99;
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+	}
+	>.mui-body {
+		width: 100%;
+		@extend .mui-flex-auto;
+		@extend .mui-overflow-scroll;
+	}
+	>.mui-footer {
+		width: 100%;
+	}
+}
+.mui-darkbg{
+	background-color: $bgDarkColor;
+}
+/************************ end *******************************/
+
+
+/************************ flex布局 start *******************************/
+.mui-flex{
+	@include flexbox;
+}
+.mui-flex-veri{
+	@include flexboxVertical;
+}
+.mui-flex-auto{
+	@include flexAuto;
+}
+.mui-flex-center-hori{
+	@include flexCenterHori;
+}
+.mui-flex-end-hori{
+	@include flexEndHori;
+}
+.mui-flex-center-veri{
+	@include flexCenterVeri;
+}
+.mui-flex-end-veri{
+	@include flexEndVeri;
+}
+.mui-flex-average{
+	@include flexAverage;
+}
+/************************ flex布局 end *******************************/
+
+/**
+*	自动隐藏文字为省略号
+*	可以通过下面数组配置，目前只写了最多四列
+*/
+/************************* start ******************************/
+$ellipsis: (l1: 1, l2: 2, l3: 3, l4: 4);
+@each $header, $value in $ellipsis{
+	.mui-ellipsis-#{$value}{
+		@if $value == 1{
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		} @else{
+			display: -webkit-box !important;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-wrap: break-word;
+			white-space: normal;
+			-webkit-line-clamp: $value;
+			-webkit-box-orient: vertical;
+		}
+	}
+}
+/************************ end *******************************/
+
+/**
+* icon字体图标
+* 可以根据具体需要加载不同的字体
+*/
+/************************* start ****************************/
+@font-face {
+  font-family: "auiicon";
+  src: url("../../font/iconfont.ttf") format("truetype");
+}
+// @font-face {
+//   font-family: "auiicon";
+//   src: url("../../font/iconfont1.ttf") format("truetype");
+// }
+.mui-iconfont {
+  position: relative;
+  font-family:"auiicon" !important;
+  font-size:0.32rem;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.mui-iconfont:before{
+	font-size: inherit;
+}
+.mui-icon-appreciate:before { content: "\e644"; }
+.mui-icon-check:before { content: "\e645"; }
+.mui-icon-close:before { content: "\e646"; }
+.mui-icon-edit:before { content: "\e649"; }
+.mui-icon-emoji:before { content: "\e64a"; }
+.mui-icon-favorfill:before { content: "\e64b"; }
+.mui-icon-favor:before { content: "\e64c"; }
+.mui-icon-loading:before { content: "\e64f"; }
+.mui-icon-locationfill:before { content: "\e650"; }
+.mui-icon-location:before { content: "\e651"; }
+.mui-icon-phone:before { content: "\e652"; }
+.mui-icon-roundcheckfill:before { content: "\e656"; }
+.mui-icon-roundcheck:before { content: "\e657"; }
+.mui-icon-roundclosefill:before { content: "\e658"; }
+.mui-icon-roundclose:before { content: "\e659"; }
+.mui-icon-roundrightfill:before { content: "\e65a"; }
+.mui-icon-roundright:before { content: "\e65b"; }
+.mui-icon-search:before { content: "\e65c"; }
+.mui-icon-timefill:before { content: "\e65e"; }
+.mui-icon-time:before { content: "\e65f"; }
+.mui-icon-taxi:before { content: "\e65d"; }
+.mui-icon-unfold:before { content: "\e661"; }
+.mui-icon-warnfill:before { content: "\e662"; }
+.mui-icon-warn:before { content: "\e663"; }
+.mui-icon-camerafill:before { content: "\e664"; }
+.mui-icon-camera:before { content: "\e665"; }
+.mui-icon-commentfill:before { content: "\e666"; }
+.mui-icon-comment:before { content: "\e667"; }
+.mui-icon-likefill:before { content: "\e668"; }
+.mui-icon-like:before { content: "\e669"; }
+.mui-icon-notificationfill:before { content: "\e66a"; }
+.mui-icon-notification:before { content: "\e66b"; }
+.mui-icon-order:before { content: "\e66c"; }
+.mui-icon-samefill:before { content: "\e66d"; }
+.mui-icon-same:before { content: "\e66e"; }
+.mui-icon-deliver:before { content: "\e671"; }
+.mui-icon-evaluate:before { content: "\e672"; }
+.mui-icon-pay:before { content: "\e673"; }
+.mui-icon-send:before { content: "\e675"; }
+.mui-icon-shop:before { content: "\e676"; }
+.mui-icon-ticket:before { content: "\e677"; }
+.mui-icon-back:before { content: "\e679"; }
+.mui-icon-cascades:before { content: "\e67c"; }
+.mui-icon-discover:before { content: "\e67e"; }
+.mui-icon-list:before { content: "\e682"; }
+.mui-icon-more:before { content: "\e684"; }
+.mui-icon-myfill:before { content: "\e685"; }
+.mui-icon-my:before { content: "\e686"; }
+.mui-icon-scan:before { content: "\e689"; }
+.mui-icon-settings:before { content: "\e68a"; }
+.mui-icon-questionfill:before { content: "\e690"; }
+.mui-icon-question:before { content: "\e691"; }
+.mui-icon-shopfill:before { content: "\e697"; }
+.mui-icon-form:before { content: "\e699"; }
+.mui-icon-pic:before { content: "\e69b"; }
+.mui-icon-filter:before { content: "\e69c"; }
+.mui-icon-footprint:before { content: "\e69d"; }
+.mui-icon-top:before { content: "\e69e"; }
+.mui-icon-pulldown:before { content: "\e69f"; }
+.mui-icon-pullup:before { content: "\e6a0"; }
+.mui-icon-right:before { content: "\e6a3"; }
+.mui-icon-refresh:before { content: "\e6a4"; }
+.mui-icon-moreandroid:before { content: "\e6a5"; }
+.mui-icon-deletefill:before { content: "\e6a6"; }
+.mui-icon-refund:before { content: "\e6ac"; }
+.mui-icon-cart:before { content: "\e6af"; }
+.mui-icon-qrcode:before { content: "\e6b0"; }
+.mui-icon-remind:before { content: "\e6b2"; }
+.mui-icon-delete:before { content: "\e6b4"; }
+.mui-icon-profile:before { content: "\e6b7"; }
+.mui-icon-home:before { content: "\e6b8"; }
+.mui-icon-cartfill:before { content: "\e6b9"; }
+.mui-icon-discoverfill:before { content: "\e6ba"; }
+.mui-icon-homefill:before { content: "\e6bb"; }
+.mui-icon-message:before { content: "\e6bc"; }
+.mui-icon-addressbook:before { content: "\e6bd"; }
+.mui-icon-link:before { content: "\e6bf"; }
+.mui-icon-lock:before { content: "\e6c0"; }
+.mui-icon-unlock:before { content: "\e6c2"; }
+.mui-icon-vip:before { content: "\e6c3"; }
+.mui-icon-activity:before { content: "\e6c5"; }
+.mui-icon-friendaddfill:before { content: "\e6c9"; }
+.mui-icon-friendadd:before { content: "\e6ca"; }
+.mui-icon-friendfamous:before { content: "\e6cb"; }
+.mui-icon-friend:before { content: "\e6cc"; }
+.mui-icon-goods:before { content: "\e6cd"; }
+.mui-icon-selection:before { content: "\e6ce"; }
+.mui-icon-explore:before { content: "\e6d2"; }
+.mui-icon-present:before { content: "\e6d3"; }
+.mui-icon-squarecheckfill:before { content: "\e6d4"; }
+.mui-icon-square:before { content: "\e6d5"; }
+.mui-icon-squarecheck:before { content: "\e6d6"; }
+.mui-icon-round:before { content: "\e6d7"; }
+.mui-icon-roundaddfill:before { content: "\e6d8"; }
+.mui-icon-roundadd:before { content: "\e6d9"; }
+.mui-icon-add:before { content: "\e6da"; }
+.mui-icon-notificationforbidfill:before { content: "\e6db"; }
+.mui-icon-explorefill:before { content: "\e6dd"; }
+.mui-icon-fold:before { content: "\e6de"; }
+.mui-icon-game:before { content: "\e6df"; }
+.mui-icon-redpacket:before { content: "\e6e0"; }
+.mui-icon-selectionfill:before { content: "\e6e1"; }
+.mui-icon-similar:before { content: "\e6e2"; }
+.mui-icon-appreciatefill:before { content: "\e6e3"; }
+.mui-icon-infofill:before { content: "\e6e4"; }
+.mui-icon-info:before { content: "\e6e5"; }
+.mui-icon-forwardfill:before { content: "\e6ea"; }
+.mui-icon-forward:before { content: "\e6eb"; }
+.mui-icon-rechargefill:before { content: "\e6ec"; }
+.mui-icon-recharge:before { content: "\e6ed"; }
+.mui-icon-vipcard:before { content: "\e6ee"; }
+.mui-icon-voice:before { content: "\e6ef"; }
+.mui-icon-voicefill:before { content: "\e6f0"; }
+.mui-icon-friendfavor:before { content: "\e6f1"; }
+.mui-icon-wifi:before { content: "\e6f2"; }
+.mui-icon-share:before { content: "\e6f3"; }
+.mui-icon-wefill:before { content: "\e6f4"; }
+.mui-icon-we:before { content: "\e6f5"; }
+.mui-icon-lightauto:before { content: "\e6f6"; }
+.mui-icon-lightforbid:before { content: "\e6f7"; }
+.mui-icon-lightfill:before { content: "\e6f8"; }
+.mui-icon-camerarotate:before { content: "\e6f9"; }
+.mui-icon-light:before { content: "\e6fa"; }
+.mui-icon-barcode:before { content: "\e6fb"; }
+.mui-icon-flashlightclose:before { content: "\e6fc"; }
+.mui-icon-flashlightopen:before { content: "\e6fd"; }
+.mui-icon-searchlist:before { content: "\e6fe"; }
+.mui-icon-service:before { content: "\e6ff"; }
+.mui-icon-sort:before { content: "\e700"; }
+.mui-icon-down:before { content: "\e703"; }
+.mui-icon-mobile:before { content: "\e704"; }
+.mui-icon-mobilefill:before { content: "\e705"; }
+.mui-icon-copy:before { content: "\e706"; }
+.mui-icon-countdownfill:before { content: "\e707"; }
+.mui-icon-countdown:before { content: "\e708"; }
+.mui-icon-noticefill:before { content: "\e709"; }
+.mui-icon-notice:before { content: "\e70a"; }
+.mui-icon-upstagefill:before { content: "\e70e"; }
+.mui-icon-upstage:before { content: "\e70f"; }
+.mui-icon-choicenessfill:before { content: "\e714"; }
+.mui-icon-choiceness:before { content: "\e715"; }
+.mui-icon-clothesfill:before { content: "\e716"; }
+.mui-icon-clothes:before { content: "\e717"; }
+.mui-icon-creativefill:before { content: "\e718"; }
+.mui-icon-creative:before { content: "\e719"; }
+.mui-icon-female:before { content: "\e71a"; }
+.mui-icon-keyboard:before { content: "\e71b"; }
+.mui-icon-male:before { content: "\e71c"; }
+.mui-icon-pullleft:before { content: "\e71f"; }
+.mui-icon-pullright:before { content: "\e720"; }
+.mui-icon-rankfill:before { content: "\e721"; }
+.mui-icon-rank:before { content: "\e722"; }
+.mui-icon-bad:before { content: "\e723"; }
+.mui-icon-cameraadd:before { content: "\e724"; }
+.mui-icon-focus:before { content: "\e725"; }
+.mui-icon-friendfill:before { content: "\e726"; }
+.mui-icon-cameraaddfill:before { content: "\e727"; }
+.mui-icon-apps:before { content: "\e729"; }
+.mui-icon-paintfill:before { content: "\e72a"; }
+.mui-icon-paint:before { content: "\e72b"; }
+.mui-icon-picfill:before { content: "\e72c"; }
+.mui-icon-refresharrow:before { content: "\e72d"; }
+.mui-icon-markfill:before { content: "\e730"; }
+.mui-icon-mark:before { content: "\e731"; }
+.mui-icon-presentfill:before { content: "\e732"; }
+.mui-icon-repeal:before { content: "\e733"; }
+.mui-icon-album:before { content: "\e734"; }
+.mui-icon-peoplefill:before { content: "\e735"; }
+.mui-icon-people:before { content: "\e736"; }
+.mui-icon-servicefill:before { content: "\e737"; }
+.mui-icon-repair:before { content: "\e738"; }
+.mui-icon-file:before { content: "\e739"; }
+.mui-icon-repairfill:before { content: "\e73a"; }
+.mui-icon-taoxiaopu:before { content: "\e73b"; }
+.mui-icon-attentionfill:before { content: "\e73c"; }
+.mui-icon-attention:before { content: "\e73d"; }
+.mui-icon-commandfill:before { content: "\e73e"; }
+.mui-icon-command:before { content: "\e73f"; }
+.mui-icon-communityfill:before { content: "\e740"; }
+.mui-icon-community:before { content: "\e741"; }
+.mui-icon-read:before { content: "\e742"; }
+.mui-icon-calendar:before { content: "\e74a"; }
+.mui-icon-cut:before { content: "\e74b"; }
+.mui-icon-magic:before { content: "\e74c"; }
+.mui-icon-backwardfill:before { content: "\e74d"; }
+.mui-icon-forwardfill1:before { content: "\e74e"; }
+.mui-icon-playfill:before { content: "\e74f"; }
+.mui-icon-stop:before { content: "\e750"; }
+.mui-icon-tagfill:before { content: "\e751"; }
+.mui-icon-tag:before { content: "\e752"; }
+.mui-icon-group:before { content: "\e753"; }
+.mui-icon-move:before { content: "\e754"; }
+.mui-icon-all:before { content: "\e755"; }
+.mui-icon-backdelete:before { content: "\e756"; }
+.mui-icon-hotfill:before { content: "\e757"; }
+.mui-icon-hot:before { content: "\e758"; }
+.mui-icon-post:before { content: "\e759"; }
+.mui-icon-radiobox:before { content: "\e75b"; }
+.mui-icon-rounddown:before { content: "\e75c"; }
+.mui-icon-upload:before { content: "\e75d"; }
+.mui-icon-videofill:before { content: "\e75e"; }
+.mui-icon-video:before { content: "\e75f"; }
+.mui-icon-writefill:before { content: "\e760"; }
+.mui-icon-write:before { content: "\e761"; }
+.mui-icon-radioboxfill:before { content: "\e763"; }
+.mui-icon-punch:before { content: "\e764"; }
+.mui-icon-shake:before { content: "\e765"; }
+.mui-icon-add1:before { content: "\e767"; }
+.mui-icon-move1:before { content: "\e768"; }
+.mui-icon-safe:before { content: "\e769"; }
+.mui-icon-activityfill:before { content: "\e775"; }
+.mui-icon-crownfill:before { content: "\e776"; }
+.mui-icon-crown:before { content: "\e777"; }
+.mui-icon-goodsfill:before { content: "\e778"; }
+.mui-icon-messagefill:before { content: "\e779"; }
+.mui-icon-profilefill:before { content: "\e77a"; }
+.mui-icon-sound:before { content: "\e77b"; }
+.mui-icon-sponsorfill:before { content: "\e77c"; }
+.mui-icon-weunblock:before { content: "\e780"; }
+.mui-icon-weblock:before { content: "\e77f"; }
+.mui-icon-upblock:before { content: "\e77e"; }
+.mui-icon-sponsor:before { content: "\e77d"; }
+.mui-icon-babyfill:before { content: "\e710"; }
+.mui-icon-baby:before { content: "\e711"; }
+/************************* end ****************************/
+
+
+/************************* 区域内滚动 start ****************************/
+.mui-overflow-scroll{
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	position: relative;
+}
+/************************* 区域内滚动 end *******************************/
+
+
+/**
+*	1像素的线
+*	2016-01-04
+*/
+/************************* start ****************************/
+$lineDir: (top: top, left: left, bottom: bottom, right: right);
+@each $header, $value in $lineDir{
+	.mui-line-#{$header}{
+		position: relative;
+		overflow: hidden;
+		@if $value == top {
+			border-top: 1px solid #e0e0e0;
+		} @else if $value == bottom {
+			border-bottom: 1px solid #e0e0e0;
+		} @else if $value == left {
+			border-left: 1px solid #e0e0e0;
+		} @else if $value == right {
+			border-right: 1px solid #e0e0e0;
+		} @else{
+			border: 1px solid #e0e0e0;
+		}
+	}
+}
+
+// 来自frozenui
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .mui-line {
+        position:relative;
+        border: 0
+    }
+
+    .mui-line-top,
+    .mui-line-bottom,
+    .mui-line-left,
+    .mui-line-right,
+    .mui-line-top-bottom {
+        border: 0
+    }
+
+    .mui-line-top {
+        background-position: left top;
+        background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor))
+    }
+
+    .mui-line-bottom {
+        background-position: left bottom;
+        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor))
+    }
+
+    .mui-line-top,
+    .mui-line-bottom,
+    .mui-line-top-bottom {
+        background-repeat: repeat-x;
+        -webkit-background-size: 100% 1px
+    }
+
+    .mui-line-top-bottom {
+        background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor)),-webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor));
+        background-position: top,bottom
+    }
+
+    .mui-line-left {
+        background-position: left top;
+        background-image: -webkit-gradient(linear,right top,left top,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor))
+    }
+
+    .mui-line-right {
+        background-position: right top;
+        background-image: -webkit-gradient(linear,left top,right top,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor))
+    }
+
+    .mui-line-left,
+    .mui-line-right {
+        background-repeat: repeat-y;
+        -webkit-background-size: 1px 100%
+    }
+
+    .mui-line:after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor)),-webkit-gradient(linear,left top,right top,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor)),-webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor)),-webkit-gradient(linear,right top,left top,color-stop(0.5,transparent),color-stop(0.5,$lineColor),to($lineColor));
+        -webkit-background-size: 100% 1px,1px 100%,100% 1px,1px 100%;
+        background-size: 100% 1px,1px 100%,100% 1px,1px 100%;
+        -webkit-background-size: 100% 1px,1px 100%,100% 1px,1px 100%;
+        background-size: 100% 1px,1px 100%,100% 1px,1px 100%;
+        background-repeat: no-repeat;
+        background-position: top,right,bottom,left;
+        padding: 1px;
+        -webkit-box-sizing: border-box;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .mui-line-radius {
+        position:relative;
+        border: 0
+    }
+
+    .mui-line-radius:before {
+        content: "";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid $lineColor;
+        -webkit-transform: scale(0.5);
+        -webkit-transform-origin: 0 0;
+        padding: 1px;
+        -webkit-box-sizing: border-box;
+        border-radius: 4px;
+        pointer-events: none
+    }
+}
+
+/************************* end *******************************/
+
+/**
+*	左右内padding
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*	添加支持单个方向
+*/
+/************************* start ****************************/
+$paddingLeft: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $paddingLeft{
+	.mui-padding-0-#{$header}{
+		padding-left: $value;
+		padding-right: $value;
+	}
+
+	.mui-padding-left-#{$header}{
+		padding-left: $value;
+	}
+
+	.mui-padding-right-#{$header}{
+		padding-right: $value;
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	上下内边距
+*	2016-01-15
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*	支持单个方向上下
+*/
+/************************* start ****************************/
+$paddingRight: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $paddingRight{
+	.mui-padding-#{$header}-0{
+		padding-top: $value;
+		padding-bottom: $value;
+	}
+
+	.mui-padding-top-#{$header}{
+		padding-top: $value;
+	}
+
+	.mui-padding-bottom-#{$header}{
+		padding-bottom: $value;
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	全部内padding
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*/
+/************************* start ****************************/
+$padding: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $padding{
+	.mui-padding-#{$header}{
+		padding-top: $value;
+		padding-left: $value;
+		padding-bottom: $value;
+		padding-right: $value;
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	左右外边距
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*/
+/************************* start ****************************/
+$marginLeft: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $marginLeft{
+	.mui-margin-0-#{$header}{
+		margin-left: $value;
+		margin-right: $value;
+	}
+
+	.mui-margin-left-#{$header}{
+		margin-left: $value;
+	}
+
+	.mui-margin-right-#{$header}{
+		margin-right: $value;
+	}
+}
+
+//上下外边距
+@each $header, $value in $marginLeft{
+	.mui-margin-#{$header}-0{
+		margin-top: $value;
+		margin-bottom: $value;
+	}
+
+	.mui-margin-top-#{$header}{
+		margin-top: $value;
+	}
+
+	.mui-margin-bottom-#{$header}{
+		margin-bottom: $value;
+	}
+}
+/************************* end *******************************/
+
+
+
+/**
+*	全部外边距
+*	目前支持5 10 15 20四个，可以在数组里面添加
+*/
+/************************* start ****************************/
+$margin: (5: 0.1rem, 10: 0.2rem, 15: 0.3rem, 20: 0.4rem);
+@each $header, $value in $margin{
+	.mui-margin-#{$header}{
+		margin-top: $value;
+		margin-left: $value;
+		margin-bottom: $value;
+		margin-right: $value;
+	}
+}
+/************************* end *******************************/
+
+
+/**
+*	mui.js 需要样式
+*	alert loading
+*/
+/************************* start ****************************/
+#_z_alert_ { width: 100%; height: 100%; background: rgba(0,34,54,0.2); position: fixed; left: 0; top: 0; z-index: 100000; width: 100%; height: 100%; display: -webkit-box; -webkit-box-align: center; -webkit-box-pack: center; opacity: 0; -webkit-transition: opacity 0.3s ease-out;}
+#_z_alert_ .popup { background: #fff; box-shadow: 0 0 8px rgba(0,39,61,0.1); border-radius: 4px; width: 75%; pointer-events: none;}
+#_z_alert_ .popup h1 { display: none; line-height: 34px; height: 40px; padding-top: 6px; text-align: center; font-size: 16px; overflow: hidden; color: #999;}
+#_z_alert_ .popup .p { padding: 28px 18px 26px 18px; display: -webkit-box; -webkit-box-pack: center;}
+#_z_alert_ .popup .p p { color: #333; font-size: 14px; line-height: 20px;}
+#_z_alert_ .popup .btns { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACAQMAAACjTyRkAAAABlBMVEUAAADk5OSW+dE6AAAAAXRSTlMAQObYZgAAAAxJREFUCNdjaGBgAAABhACBKN161wAAAABJRU5ErkJggg==) 0 0 repeat-x; background-size: 100% 1px; height: 40px; overflow: hidden; display: -webkit-box;}
+#_z_alert_ .popup .btns a { display: block; width: 100%; height: 40px; -webkit-box-flex: 1; text-align: center; line-height: 40px; color: #0081cc;}
+#_z_alert_ .popup .btns a:nth-child(2) { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABAQMAAADO7O3JAAAABlBMVEUAAADk5OSW+dE6AAAAAXRSTlMAQObYZgAAAApJREFUCNdjaAAAAIIAgd1DavQAAAAASUVORK5CYII=) 0 0 repeat-y; background-size: 1px 100%;}
+#_z_alert_ .popup .btns a[hover] { background: rgba(0,39,61,0.02);}
+#_z_alert_ .popup .btns a:nth-child(2)[hover] { background: rgba(0,39,61,0.02) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABAQMAAADO7O3JAAAABlBMVEUAAADk5OSW+dE6AAAAAXRSTlMAQObYZgAAAApJREFUCNdjaAAAAIIAgd1DavQAAAAASUVORK5CYII=) 0 0 repeat-y; background-size: 1px 100%;}
+#_z_alert_.show { opacity: 1;}
+#_z_alert_.show .popup { -webkit-transform: scale(1,1); -webkit-animation: "____popupAlertShow" 0.2s ease-out; pointer-events: auto;}
+@-webkit-keyframes "____popupAlertShow" {
+	0% {-webkit-transform: scale(1.4,1.4); opacity: 0;}
+	75% {-webkit-transform: scale(0.95,0.95); opacity: 1;}
+	100% {-webkit-transform: scale(1,1); opacity: 1;}
+}
+#_z_alert_.out { opacity: 0; -webkit-transition: opacity 0.15s ease-out;}
+#_z_alert_.out .popup { -webkit-transform: scale(0.95,0.95); -webkit-transition: -webkit-transform 0.15s ease-out;}
+
+
+
+
+#_z_loading_,#_z_loading_txt { width: 100%; height: 100%; background: rgba(0,0,0,0.2); position: fixed; left: 0; top: 0; z-index: 99999; width: 100%; height: 100%; display: -webkit-box; -webkit-box-align: center; -webkit-box-pack: center;}
+#_z_loading_,#_z_loading_txt {
+	strong { display: -webkit-box; -webkit-box-align: center; -webkit-box-pack: center; height: 1.8rem; width: 1.8rem; position: relative;}
+}
+
+#_z_loading_,#_z_loading_txt {
+	strong span { display: block; width: 1.8rem; height: 1.8rem; background-size: 100% 100%;  position: absolute; left: 0; top: 0;}
+}
+#_z_loading_,#_z_loading_txt {
+	strong span img{ width: 100%;}
+}
+#_z_loading_txt{ background: none;}
+#_z_loading_txt strong{ border-radius: 6px; background:rgba(0,0,0,.9)}
+// #_z_loading_ strong span:nth-child(2) { -webkit-animation: "___z_loadingRotate2" 2s linear 0 infinite;}
+// @-webkit-keyframes "___z_loadingRotate" {
+// 	0% {-webkit-transform: rotate(0deg);}
+// 	100% {-webkit-transform: rotate(360deg);}
+// }
+// @-webkit-keyframes "___z_loadingRotate2" {
+// 	0% {-webkit-transform: scale(-1,1) rotate(0deg);}
+// 	100% {-webkit-transform: scale(-1,1) rotate(360deg);}
+// }
+
+
+/**
+*	toast消息对话框
+*/
+/************************* start ****************************/
+
+
+
+
+
+
+

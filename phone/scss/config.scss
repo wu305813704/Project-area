@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+// 	背景颜色
+$bgColor: #fff; 
+$bgDarkColor: #f0f0f6; 
+
+//	字体颜色
+$fontColor: #434343;
+$fontStrongColor: #000000;
+$fontLightenrColor: #828282;
+$fontGrey:#696868;
+
+//	line颜色
+$lineColor: #e4e7ef;
+
+
+// 通用颜色
+$whiteColor: #fff; // 白色 
+$orangeColor: #f2794c; //橙红
+$redColor: #ff0000; //红色
+$redLightColor :#ff5858; //浅红色
+$greenColor: #2cd38b; //绿色
+$greenLightColor:#65cf7c; //浅绿色
+$blueColor: #0298f6; //蓝色 
+$geryColor:#bfbfbf;//灰色
+$borderColor:#dfdfdf;//边框线 灰色
+
+
+
+
+
+// 绝对定位百分百的窗口
+@mixin absWin {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	overflow: hidden;
+}
+
+
+// 	flex兼容
+@mixin flexbox {
+	display: box;
+  	display: -webkit-box;
+}
+
+// 水平平均分布
+@mixin flexAverage{
+	box-pack:justify;
+	-webkit-box-pack: justify;
+}
+
+// flex兼容水平居中
+@mixin flexCenterHori{
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+}
+
+// flex兼容垂直平均分布
+@mixin flexVeriAverage {
+	-webkit-box-pack: justify;
+	-webkit-box-align: start;
+}
+
+//flex 兼容水平 两边等距
+@mixin flexAround{
+	 display: -webkit-flex; /* Safari */
+  	 display: flex;
+	 justify-content: space-around;
+}
+
+// flex兼容水平居右
+@mixin flexEndHori{
+	box-align: end;
+	-webkit-box-align: end;
+}
+
+
+// 水平反转
+@mixin flexHoriReverse{
+	box-direction: reverse;
+	-webkit-box-direction: reverse;
+}
+
+//	flex垂直方向
+@mixin flexboxVertical {
+	box-orient: vertical;
+	-webkit-box-orient: vertical;
+}
+
+// flex兼容垂直居中
+@mixin flexCenterVeri{
+	box-align:center;
+	-webkit-box-align: center;
+}
+
+// flex兼容垂直居底
+@mixin flexEndVeri{
+	box-pack: end;
+	-webkit-box-pack: end;
+}
+
+//	flex子元素自适应撑满
+@mixin flexAuto {
+	box-flex: 1;
+	-webkit-box-flex: 1;
+}
+
+// 图片路径
+@function path($name) {
+	@return "../../images/" + $name;
+}
+
+// 禁止选择
+@mixin userSelect{
+	user-select: none;
+}
+// 但单行蓝色文字
+@mixin aloneTxt{
+		text-align: center;
+		color: $blueColor;
+}
+// 列表
+	@mixin basic-list-info{
+		.mui-list-cell{
+			>div{
+				font-size: .3rem;
+				input,select{
+					@include flexAuto;
+					@include flexbox;
+					vertical-align: baseline;
+					text-indent: .05rem;
+					text-align: right;
+					padding-right:.2rem;
+					height: .45rem;
+					line-height: .45rem;
+					margin-top: .35rem;
+					border:none;
+					direction: rtl;
+				}
+				select{
+					border:none;
+				}
+			}
+		}
+	}
+
+.basic-list-info{
+	@include basic-list-info;
+}
+// 设为类 4.12
