@@ -16,17 +16,22 @@ $(function () {
 
 			// Mui.alert.show("普通弹出");
 
-			// Mui.alert.show({
-			// 	txt: "您确定要花费吗？",
-			//     btnN: "取消",
-			//     btnY: "确认",
-			//     callbackN: function () {
-			//     	//取消后的回调
-			//     },
-			//     callbackY: function () {
-			//     	// 确认后回调
-			//     }
-			// })
+			Mui.alert.show({
+				txt: "您确定要花费吗？",
+			    btnN: "取消",
+			    btnY: "确认",
+			    callbackN: function () {
+			    	//取消后的回调
+			    	Mui.loading.show(); //打开loading
+			    	setTimeout(function () { //关闭loading
+			    		Mui.loading.hide()
+			    	},3000)
+			    },
+			    callbackY: function () {
+			    	// 确认后回调
+			    	 Mui.toast("一个大傻逼啊！")
+			    }
+			})
 
 			// Mui.loading.show(); //打开loading
 			// setTimeout(function () { //关闭loading
