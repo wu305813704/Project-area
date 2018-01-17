@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<title>地图展示</title>
+  <style>
+    iframe{
+      display: none
+    }
+  </style>
+</head>
+<body>
+<!-- <a href="https://3gimg.qq.com/lightmap/components/locationPicker2/index.html?search=1&type=0&backurl=http%3A%2F%2F3gimg.qq.com%2Flightmap%2Fcomponents%2FlocationPicker2%2Fback.html&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp">啊</a> -->
+<iframe id="mapPage" width="100%" height="100%" frameborder=0 
+    src="http://apis.map.qq.com/tools/locpicker?search=1&type=1&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp">
+</iframe> 
+ <script src='jquery.min.js'>
+ </script>
+<script>
+    window.addEventListener('message', function(event) {
+        // 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+        var loc = event.data;
+        if (loc && loc.module == 'locationPicker') {//防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+          console.log(loc);  
+      	 var str = loc.poiaddress;
+        }                                
+    }, false); 
+</script>
+</body>
+  <select name="" id="">
+    <option value="a">a</option>
+    <option value="b">b</option>
+    <option value="map">c</option>
+  </select>
+  <input type="text" class="addressMap">
+  <a href="javascript:;" class="local">点击定位</a>
+<script>
+$(function(){
+  var page = {
+    init:function(){
+      /*******************地图功能 *********************/
+        window.addEventListener('message', function (event) {
+          // 接收位置信息，用户选择确认位置点后选点组件会触发该事件，回传用户的位置信息
+          var loc = event.data;
+          if (loc && loc.module == 'locationPicker') {//防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
+            var str = loc.poiaddress;
+            page.$location.setSelect(str);
+            page.$location.setInput(str);
+            $('iframe').hide();
+          }
+        }, false);
+
+        // accident 事故管家位置定位
+        $('.local').click(function(){
+          $('iframe').show();
+          page.$location.node = $(this).parent().parent().find('input');
+        })
+        // 选择地图定位填值
+        $('select').change(function () {
+          if ($(this).val() == 'map') {
+            $('iframe').show()
+            page.$location.node = $(this);
+          }
+        })
+      /*******************地图功能 end*****************/
+    },
+    $location:{
+      //存放地图的一切信息
+      node:null,//jQuery node
+      setSelect:function(str){
+        console.log(this.node.find('.mapValue'))
+        if (this.node.find('.mapValue').length > 0) {
+          this.node.find('.mapValue').text(str);
+          console.log(str)
+        }else{
+          this.node.append("<option class='mapValue' value='mapValue' selected>"+ str +"</option>");
+        }
+        // document.get
+        this.node.get(0).value = 'mapValue'
+        // this.node.attr("mapValue");
+      },
+      setInput:function(str){
+        $('.addressMap').val(str)
+      }
+    }
+  }
+  page.init()
+})
+	
+</script>
+</html>
